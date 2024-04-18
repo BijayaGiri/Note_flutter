@@ -59,9 +59,20 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal:20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
          crossAxisAlignment: CrossAxisAlignment.center,
          children: [
+           SizedBox(
+             height: 50,
+           ),
+           CircleAvatar(
+             maxRadius: 50,
+             child: Image.asset("assets/images/img.png"),
+           ),
+            SizedBox(
+              height: 70,
+            ),
+
             Form(
                 key: _formkey,
                 child: Column(children: [
@@ -95,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                   ),
-                  
+
                   SizedBox(
                     height: 50,
                   ),

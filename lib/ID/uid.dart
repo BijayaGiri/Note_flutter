@@ -10,4 +10,6 @@ class UId{
 class reference{
 
   final Ref=FirebaseDatabase.instance.ref(_auth.currentUser!.uid);
+  final usernameRef=FirebaseDatabase.instance.ref(_auth.currentUser!.uid+"username");
+
 }

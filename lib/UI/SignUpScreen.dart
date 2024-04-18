@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebasetrial/Button/RoundButton.dart';
+import 'package:firebasetrial/UI/Add_User_Name.dart';
 import 'package:firebasetrial/UI/LoginScreen.dart';
 import 'package:firebasetrial/UI/PostScreen.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     PasswordController.dispose();
   }
 
-  void signup(){
+  void  signup(){
     setState(() {
       loading=true;
     });
@@ -36,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         loading=false;
       });
       Utils().toastMessage("Account Creation Successful");
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>AddUserName()));
     }).onError((error, stackTrace) {
       setState(() {
         loading=false;
@@ -59,9 +60,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal:20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+         // mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 50,
+            ),
+            CircleAvatar(
+              maxRadius: 50,
+              child: Image.asset("assets/images/sign_up.png"),
+            ),
+            SizedBox(
+              height: 70,
+            ),
             Form(
                 key: _formkey,
                 child: Column(children: [
