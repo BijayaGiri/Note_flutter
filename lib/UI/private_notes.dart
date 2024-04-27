@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ class privatenotes extends StatefulWidget {
 
 class _privatenotesState extends State<privatenotes> {
   final updateController = TextEditingController();
-  final _auth = FirebaseAuth.instance;
+  //final _auth = FirebaseAuth.instance;
   //creating the instance of the Authentication
   final uid = UId().id();
   final ref = reference().Ref;
