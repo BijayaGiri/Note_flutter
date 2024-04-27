@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:firebasetrial/Button/RoundButton.dart';
 import 'package:firebasetrial/ID/uid.dart';
 import 'package:firebasetrial/UI/LoginScreen.dart';
 import 'package:firebasetrial/UI/addpost.dart';
+import 'package:firebasetrial/UI/private_notes.dart';
 import 'package:firebasetrial/Utils/Utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +23,7 @@ class _PostScreenState extends State<PostScreen> {
   final uid = UId().id();
   final ref = reference().Ref;
   final user = reference().usernameRef;
+  final databaseref=reference().publicref;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +80,10 @@ class _PostScreenState extends State<PostScreen> {
                     .child("UserName")
                     .value
                     .toString(),style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                ElevatedButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>privatenotes()));
+
+                }, child: Text("Private Notes"))
 
               ],
             );
@@ -93,7 +98,7 @@ class _PostScreenState extends State<PostScreen> {
               defaultChild: Center(child: CircularProgressIndicator(
                 strokeWidth: 4,
               )),
-                query: ref,
+                query: databaseref,
                 itemBuilder: (context, snapshot, animation, index) {
                   return ListTile(
                     trailing: PopupMenuButton(
@@ -129,6 +134,7 @@ class _PostScreenState extends State<PostScreen> {
                         .child("title")
                         .value
                         .toString()),
+                    subtitle: Text(snapshot.child("time").value.toString()),
                   );
                 }),
           )
@@ -163,7 +169,7 @@ class _PostScreenState extends State<PostScreen> {
             Navigator.pop(context);
           }, child: Text("Cancel")),
           TextButton(onPressed: () {
-            ref.child(id).update({
+            databaseref.child(id).update({
               "title": updateController.text.toString(),
             });
             Navigator.pop(context);

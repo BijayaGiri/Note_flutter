@@ -37,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         loading=false;
       });
       Utils().toastMessage("Account Creation Successful");
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>AddUserName()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>AddUserName()));
     }).onError((error, stackTrace) {
       setState(() {
         loading=false;

@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
       loading=false;
     });
     Utils().toastMessage(value.user!.email.toString());
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>PostScreen()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>PostScreen()));
   }).onError((error, stackTrace) {
     setState(() {
       loading=false;
@@ -48,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
         title: Center(
           child: Text("Login Screen",style: TextStyle(
@@ -94,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   TextFormField(
+                    obscureText: true,
                     controller: PasswordController,
                     decoration: InputDecoration(
                       hintText: "Password",
@@ -125,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
              children: [
                Text("Dont have an account:"),
              TextButton(onPressed: (){
-               Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
+               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
              }, child: Text("Signup")),
              ],
            )

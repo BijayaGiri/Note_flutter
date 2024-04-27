@@ -16,6 +16,7 @@ class _AddUserNameState extends State<AddUserName> {
   final phonenumber=TextEditingController();
   final uid=UId().id();//getting the user id
   final ref=reference().usernameRef;//creating the reference of the database
+  bool loading =false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,16 +70,26 @@ class _AddUserNameState extends State<AddUserName> {
               ),
 
               RoundButton(
+                loading: loading,
                   title: "Create", onTap:(){
+                  setState(() {
+                    loading=true;
+                  });
                 ref.child(id).set({
                   "UserName":username.text.toString(),
                   "phoneNumber":phonenumber.text.toString(),
                   "id":id,
                 }).then((value) {
+                  setState(() {
+                    loading=false;
+                  });
                   Utils().toastMessage("User Credentials Will be applied soon!");
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
 
                 }).onError((error, stackTrace) {
+                  setState(() {
+                    loading=false;
+                  });
                   Utils().toastMessage(error.toString());
                 });
               } )
